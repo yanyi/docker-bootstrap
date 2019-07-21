@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: base
+    command: >
+      sh -c "yarn install &&
+            yarn run serve"
+    ports:
+      - 8080:8080
+    volumes:
+      - .:/usr/src/vue_js
+      - /usr/src/vue_js/node_modules

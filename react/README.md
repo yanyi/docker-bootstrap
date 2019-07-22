@@ -55,3 +55,25 @@ volumes:
   - .:/usr/src/react_js
   - /usr/src/react_js/node_modules
 ```
+
+## Production Image
+
+To build a production Docker image, you can run:
+
+```sh
+$ docker build -t my-awesome-app:latest .
+
+Sending build context to Docker daemon  464.4kB
+...
+Successfully built xxx
+Successfully tagged my-awesome-app:latest
+```
+
+It makes use of Docker's multistage build to copy the compiled assets into a
+NGINX Alpine image to result in a smaller Docker image.
+
+```sh
+$ docker run --rm -d -p 8080:80 my-awesome-app:latest
+
+xxx
+```

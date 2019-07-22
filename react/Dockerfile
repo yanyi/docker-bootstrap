@@ -5,3 +5,27 @@ ARG NODE_VER=12.6.0
 FROM ${NODE_IMAGE}:${NODE_VER} AS base
 
 WORKDIR /usr/src/react_js
+
+# For building the image
+FROM ${NODE_IMAGE}:${NODE_VER} AS builder
+
+# Copy and do `yarn install` for dependencies and caches them unless there are
+# changes in the package.json/yarn.lock.
+WORKDIR /usr/src/react_js
+COPY package.json .
+COPY yarn.lock .
+RUN yarn install
+
+# Build the application (React)
+COPY src ./src
+COPY public ./public
+RUN yarn build
+
+# For final resulting image
+FROM nginx:1.17.1-alpine
+
+COPY --from=builder /usr/src/react_js/build/ /var/www
+COPY nginx.conf /etc/nginx/nginx.conf
+
+EXPOSE 80
+ENTRYPOINT ["nginx", "-g", "daemon off;"]

@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: base
+    command: >
+      sh -c "yarn install &&
+            HOST=0.0.0.0 yarn start"
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/usr/src/react_js
+      - /usr/src/react_js/node_modules

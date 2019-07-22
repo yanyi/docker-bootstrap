@@ -12,13 +12,12 @@ FROM ${NODE_IMAGE}:${NODE_VER} AS builder
 # Copy and do `yarn install` for dependencies and caches them unless there are
 # changes in the package.json/yarn.lock.
 WORKDIR /usr/src/react_js
-COPY package.json .
-COPY yarn.lock .
+COPY package.json yarn.lock ./
 RUN yarn install
 
 # Build the application (React)
-COPY src ./src
-COPY public ./public
+COPY src src/
+COPY public public/
 RUN yarn build
 
 # For final resulting image

@@ -6,19 +6,13 @@ The following command helps you to create a new Gatsby project in your current
 working directory (be sure to change the `git config` name and email):
 
 ```sh
-$ docker-compose run new \
+docker-compose run new \
   sh -c \
   "git config --global user.name REPLACE_ME && \
   git config --global user.email REPLACE_ME && \
   gatsby new temp && \
   cp -aR temp/. . && \
   rmdir temp"
-
-info Creating new site from git: https://github.com/gatsbyjs/gatsby-starter-default.git
-Cloning into 'temp'...
-...
-Done in 175.39s.
-rmdir: failed to remove 'temp/': Directory not empty
 ```
 
 1. It uses a `temp` naming for the project, which allows the `git clone` command
@@ -34,13 +28,7 @@ rmdir: failed to remove 'temp/': Directory not empty
 To start local development, run:
 
 ```sh
-$ docker-compose up web
-
-Starting gatsby_js_web_1 ... done
-Attaching to gatsby_js_web_1
-web_1  | yarn install v1.16.0
-...
-You can now view gatsby-starter-default in the browser.
+docker-compose up web
 ```
 
 ### Notes
@@ -60,12 +48,7 @@ volumes:
 To build a production Docker image, you can run:
 
 ```sh
-$ docker build -t my-awesome-app:latest .
-
-Sending build context to Docker daemon  464.4kB
-...
-Successfully built xxx
-Successfully tagged my-awesome-app:latest
+docker build -t my-awesome-app:latest .
 ```
 
 It makes use of Docker's multistage build to copy the compiled assets into a

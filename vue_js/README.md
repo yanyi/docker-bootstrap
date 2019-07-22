@@ -7,11 +7,7 @@ As the Docker image built for the `web` service contains a global
 can run the following command to create a new Vue.js app:
 
 ```sh
-$ docker-compose run web vue create .
-
-Vue CLI v3.9.3
-? Generate project in current directory? (Y/n)
-...
+docker-compose run web vue create .
 ```
 
 ## Local Development
@@ -19,14 +15,7 @@ Vue CLI v3.9.3
 To start local development, run:
 
 ```sh
-$ docker-compose up web
-
-Creating vue_js_web_1 ... done
-Attaching to vue_js_web_1
-web_1  | yarn install v1.16.0
-...
-web_1  |   App running at:
-web_1  |   - Local:   http://localhost:8080/
+docker-compose up web
 ```
 
 ### Notes
